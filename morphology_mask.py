@@ -12,50 +12,49 @@ This script does not modify the original image.
 
 """
 
-def analyze():
-    import ij
+import ij
 
-    #Clear ROI
+#Clear ROI
 
-    roi_manager = ij.plugin.frame.RoiManager().getInstance()
-    if roi_manager.getCount() > 0:
-        roi_manager.runCommand("Select All")
-        roi_manager.runCommand("Delete")
+roi_manager = ij.plugin.frame.RoiManager().getInstance()
+if roi_manager.getCount() > 0:
+    roi_manager.runCommand("Select All")
+    roi_manager.runCommand("Delete")
 
-    # Get Image
+# Get Image
 
-    w = ij.WindowManager
-    stack = w.getCurrentImage()
+w = ij.WindowManager
+stack = w.getCurrentImage()
 
-    # Create new image of morphology slice
+# Create new image of morphology slice
 
-    stack.setSlice(1)
-    morph_ip = stack.getProcessor()
-    morph = ij.ImagePlus("Morphology", morph_ip)
-    morph.show()
+stack.setSlice(1)
+morph_ip = stack.getProcessor()
+morph = ij.ImagePlus("Morphology", morph_ip)
+morph.show()
 
-    # Background subtract
-    ij.IJ.selectWindow("Morphology")
-    ij.IJ.run("Subtract Background...", "rolling=50 sliding")
+# Background subtract
+ij.IJ.selectWindow("Morphology")
+ij.IJ.run("Subtract Background...", "rolling=50 sliding")
 
-    # Apply Threshold
-    ij.IJ.selectWindow("Morphology")
-    ij.IJ.run("Threshold...")
-    ij.IJ.run("Convert to Mask")
+# Apply Threshold
+ij.IJ.selectWindow("Morphology")
+ij.IJ.run("Threshold...")
+ij.IJ.run("Convert to Mask")
 
-    # Create ROI
-    ij.IJ.selectWindow("Morphology")
-    ij.IJ.run("Create Selection")
+# Create ROI
+ij.IJ.selectWindow("Morphology")
+ij.IJ.run("Create Selection")
 
-    # Save selection to ROI
-    ij.IJ.run("Add to Manager")
-    morph.changes = False
-    morph.close()
+# Save selection to ROI
+ij.IJ.run("Add to Manager")
+morph.changes = False
+morph.close()
 
-    # Apply ROI to reporter slice
-    stack.setSlice(2)
+# Apply ROI to reporter slice
+stack.setSlice(2)
 
-    # Measure
-    roi_manager.runCommand("Measure")
+# Measure
+roi_manager.runCommand("Measure")
 
 
