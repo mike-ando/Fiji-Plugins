@@ -1,7 +1,7 @@
 """Vesicle Distance
 Author: Mike Ando
 
-Partially modeled off of Wayne Rasbrand's Path Writer.
+Partially modeled off of Wayne Rasband's Path Writer.
 
 This is a script I created for a labmate who wanted to measure the
 shortest distances of vesicles from the post-synaptic density(PSD) in
@@ -113,7 +113,7 @@ def dist(point1, point2):
 def get_even(points, cal):
     """Get evenly spaced points (the equivalent distance to one pixel
     apart) along a set of points. This was modeled off of Wayne
-    Rasbrand's Path Writer."""
+    Rasband's Path Writer."""
     delta_dist, delta_x, delta_y = deltas(points)
     xpath = []
     ypath = []
