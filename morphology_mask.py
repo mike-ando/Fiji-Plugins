@@ -1,4 +1,6 @@
-""" Apply threshold:
+""" Apply threshold
+
+Author: Mike Ando
 
 This script expects a stack of two images. The first image is the
 morphology image and the second image is the reporter image. The stack
