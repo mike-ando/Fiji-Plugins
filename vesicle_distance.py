@@ -141,5 +141,5 @@ def get_even(points, cal):
     even_points = zip(xpath, ypath)
     return even_points
 
-
-
+# Command to run script if run alone
+analyze()
