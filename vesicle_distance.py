@@ -18,7 +18,9 @@ import vesicle_distance
 vesicle_distance.analyze()
 """
 
-import ij
+import ij.plugin.frame.RoiManager
+import ij.WindowManager
+import ij.IJ
 
 
 def analyze():
